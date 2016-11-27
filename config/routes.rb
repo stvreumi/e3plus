@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'login/list_users'
 
   resource :users
-  root to: 'root#home'
+  root to: 'login#login'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

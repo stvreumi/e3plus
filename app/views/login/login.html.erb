@@ -1,2 +1,29 @@
-<h1>Login#login</h1>
-<p>Find me in app/views/login/login.html.erb</p>
+<!--home & login page-->
+<h1>Login page</h1>
+
+<!--login-->
+<fieldset>
+    <!--change text-->
+    <legend>Log in</legend>
+    <%= form_tag do%>
+        <p>
+            <label></label>
+            <!--input account-->
+            <%= text_field_tag :account, params[:account] %>
+        </p>
+
+        <p>
+            
+            <label></label>
+            <!--input password-->
+            <%= password_field_tag :password, params[:password] %>
+        </p>
+
+        <p>
+            <!--login button-->
+            <%= submit_tag "Login" %>
+        </p>
+    <% end %>
+</fieldset>
+
+

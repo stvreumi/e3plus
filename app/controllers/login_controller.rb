@@ -8,7 +8,9 @@ class LoginController < ApplicationController
           #login successfully
           if user
               session[:user_id] = user_id#store user_id to session
-              redirect_to(:action => "index")#redirect_to index.html.erb
+              #redirect_to index.html.erb
+              #to do: add a new controller
+              redirect_to(:action => "index")
           
           #login fail => error msg
           else
@@ -17,9 +19,11 @@ class LoginController < ApplicationController
       end
   end
 
+  #logout action
   def logout
   end
 
+  #list users
   def list_users
   end
 end
