@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'login/login'
+
+  get 'login/logout'
+
+  get 'login/list_users'
+
   resource :users
   root to: 'root#home'
   # The priority is based upon order of creation: first created -> highest priority.
