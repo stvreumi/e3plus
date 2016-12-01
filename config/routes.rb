@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'login/login'
+  post 'login/login'
   get 'login/logout'
   get 'login/list_users'
 

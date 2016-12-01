@@ -1,22 +1,34 @@
 class LoginController < ApplicationController
   def login
-      #login session
-      session[:user_id] = nil
-      if request.post?#login action
-          #authenticate user
-          user = User.authenticate(params[:account], params[:password])
-          #login successfully
-          if user
-              session[:user_id] = user_id#store user_id to session
-              #redirect_to index.html.erb
-              #to do: add a new controller
-              redirect_to(:action => "index")
-          
-          #login fail => error msg
-          else
-              flash[:notice] = "Invalid user/password combination"
-          end
-      end
+    #login session
+    session[:user_id] = nil
+      
+    if request.post?#login action
+        #find user's account
+        user = User.find_by_account(params[:account])
+        
+        #account exists
+        if user
+            #check password
+            if user.authenticate(params[:password])
+                session[:user_id] = user.id
+                
+                case user.identity
+                    when "student"
+                        redirect_to :action => 'main#student_index'
+                    when "ta"
+                        redirect_to :action => 'main#ta_index'
+                    else
+                        flash[:notice] = "系統錯誤！請稍候再試"
+                end
+            else
+                flash[:notice] = "密碼錯誤！請重新登入"
+            end
+
+        else
+            flash[:notice] = "登入失敗！查無此帳戶！"
+        end
+    end
   end
 
   #logout action
