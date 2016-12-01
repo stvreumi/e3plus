@@ -13,11 +13,12 @@ class LoginController < ApplicationController
             if user.authenticate(params[:password])
                 session[:user_id] = user.id
                 
+                #redirect to different pages depend on identity
                 case user.identity
                     when "student"
-                        redirect_to :action => 'main#student_index'
+                        redirect_to :action => 'student_index', :controller => 'main'
                     when "ta"
-                        redirect_to :action => 'main#ta_index'
+                        redirect_to :action => 'ta_index', :controller => 'main'
                     else
                         flash[:notice] = "系統錯誤！請稍候再試"
                 end
